@@ -1,6 +1,7 @@
 <html>
   <head>
     <title> The cozy</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
   <header class="flex-container">
