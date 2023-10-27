@@ -1,62 +1,26 @@
-const questions = [
-  {
-    question: "Who was the first man created in the Bible?",
-    options: ["A) Adam", "B) Noah", "C) Abraham"],
-    answer: "A"
-  },
-  // Add more questions here
-];
+const options = document.querySelectorAll('.option');
+const scoreDisplay = document.getElementById('score');
+const submitButton = document.getElementById('submit-btn');
 
-let currentQuestion = 0;
 let score = 0;
-let timer;
 
-function displayQuestion() {
-  if (currentQuestion < questions.length) {
-    const q = questions[currentQuestion];
-    document.getElementById("question").textContent = `Question ${currentQuestion + 1}: ${q.question}`;
-    const options = document.querySelectorAll('input[type="radio"]');
-    for (let i = 0; i < options.length; i++) {
-      options[i].nextElementSibling.textContent = q.options[i];
-      options[i].checked = false;
-    }
-
-    // Start the 10-second timer
-    let timeLeft = 10;
-    document.getElementById("time").textContent = timeLeft;
-    timer = setInterval(() => {
-      timeLeft--;
-      document.getElementById("time").textContent = timeLeft;
-      if (timeLeft === 0) {
-        clearInterval(timer);
-        handleAnswer(null);
-      }
-    }, 1000);
-  } else {
-    document.getElementById("quiz").style.display = "none";
-    document.getElementById("results").style.display = "block";
-    document.getElementById("score").textContent = score;
-  }
-}
-
-function handleAnswer(selectedAnswer) {
-  clearInterval(timer);
-  const correctAnswer = questions[currentQuestion].answer;
-  if (selectedAnswer === correctAnswer) {
-    score++;
-  }
-
-  currentQuestion++;
-  displayQuestion();
-}
-
-document.getElementById("submit-button").addEventListener("click", function () {
-  const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-  if (selectedAnswer) {
-    handleAnswer(selectedAnswer.value);
-  } else {
-    handleAnswer(null); // No answer selected
-  }
+options.forEach(option => {
+    option.addEventListener('click', () => {
+        // Check if the selected option is the correct answer
+        const isCorrect = option.getAttribute('data-answer') === 'true';
+        if (isCorrect) {
+            score++;
+        }
+        option.style.backgroundColor = isCorrect ? 'lightgreen' : 'pink';
+    });
 });
 
-displayQuestion();
+submitButton.addEventListener('click', () => {
+    // Disable options after submitting
+    options.forEach(option => {
+        option.style.pointerEvents = 'none';
+    });
+
+    // Display the final score
+    scoreDisplay.textContent = score;
+});
