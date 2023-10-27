@@ -31,6 +31,7 @@ function loadQuestion(questionIndex) {
 }
 
 // Function to check the answer
+// Function to check the answer
 function checkAnswer(selectedIndex) {
     if (selectedIndex === questions[currentQuestion].answer) {
         score++;
@@ -41,6 +42,7 @@ function checkAnswer(selectedIndex) {
     options[questions[currentQuestion].answer].style.backgroundColor = 'lightgreen';
     disableOptions();
 }
+
 
 // Function to disable options after answering
 function disableOptions() {
