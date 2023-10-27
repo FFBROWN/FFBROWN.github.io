@@ -53,7 +53,7 @@ function checkAnswerAndProceed(questionIndex) {
 }
 
 // Event listener for the "Next" button
-nextButton.addEventListener('click', () => {
+nextButton.addEventListener('click', function () {
     if (currentQuestion < questions.length - 1) {
         currentQuestion++;
         loadQuestion(currentQuestion);
