@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Bible Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
 </head>
 <body>
-  <div id="quiz">
-    <h2>Bible Quiz</h2>
-    <p id="question">Question 1: Who was the first man created in the Bible?</p>
-    <label><input type="radio" name="answer" value="A"> A) Adam</label><br>
-    <label><input type="radio" name="answer" value="B"> B) Noah</label><br>
-    <label><input type="radio" name="answer" value="C"> C) Abraham</label><br>
-    <p>Time Left: <span id="time">10</span> seconds</p>
-    <button id="submit-button">Submit</button>
-  </div>
-  <div id="results" style="display:none;">
-    <p>Your Score: <span id="score">0</span></p>
-  </div>
-
-  <script src="quiz.js"></script>
+    <div id="quiz-container">
+        <h1>8th Grade Science Test</h1>
+        <div id="question-container">
+            <p id="question">What is the chemical symbol for water?</p>
+            <ul id="options">
+                <li class="option" data-answer="false">H2O2</li>
+                <li class="option" data-answer="false">CO2</li>
+                <li class="option" data-answer="true">H2O</li>
+                <li class="option" data-answer="false">NaCl</li>
+            </ul>
+        </div>
+        <div id="score-container">
+            <p>Your Score: <span id="score">0</span></p>
+        </div>
+        <button id="submit-btn">Submit</button>
+    </div>
+   
 </body>
 </html>
