@@ -1,8 +1,35 @@
-body{
-  font-family:Helvetica
-  font-size:22px;
-  color:seashell;
-  background-color:black;
-  opacity:0.9;
-  text-align:center;
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f7f7f7;
+}
+
+#quiz-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    margin: 0 auto;
+}
+
+#question-container {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.option {
+    padding: 5px;
+    background-color: #f2f2f2;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.option:hover {
+    background-color: #e0e0e0;
 }
