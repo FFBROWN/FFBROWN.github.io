@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="script.js"></script>
+   
 </head>
 <body>
     <div id="quiz-container">
@@ -23,6 +23,7 @@
             <p>Your Score: <span id="score">0</span></p>
         </div>
         <button id="submit-btn">Submit</button>
+         <script src="script.js"></script>
     </div>
    
 </body>
