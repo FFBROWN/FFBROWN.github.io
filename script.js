@@ -1,76 +1,132 @@
 const questions = [
-    {
-        question: "What is the chemical symbol for water?",
-        options: ["H2O2", "CO2", "H2O", "NaCl"],
-        answer: 2
+    
+  
+{
+        question: "Which subatomic particle has a positive charge?",
+        answers:[
+        {text: "Proton", correct:true},
+        {text: "Electron", correct:false},
+        {text: "Neutron", correct:false},
+        {text: "Quark", correct:false},
+        ]
+
     },
-    // Add more questions here...
+    {
+        question: "What is found in the nucleus of an atom?",
+        answers:[
+        {text: "Electrons", correct:false},
+        {text: "Neutron", correct:false},
+        {text: "Protons", correct:false},
+        {text: "Both B and C", correct:true},
+        ]
+
+    },
+    {
+        question: "Which element has the atomic number 6?",
+        answers:[
+        {text: "Oxygen", correct:false},
+        {text: "Hydrogen", correct:false},
+        {text: "Carbon", correct:true},
+        {text: "Helium", correct:false},
+        ]
+
+    },
+    {
+        question: "What is the charge of an electron?",
+        answers:[
+        {text: "Postive", correct:false},
+        {text: "Negative", correct:true},
+        {text: "neutral", correct:false},
+        {text: "Variable", correct:false},
+        ]
+
+    },
+   
 ];
 
-const options = document.querySelectorAll('.option');
-const scoreDisplay = document.getElementById('score');
-const nextButton = document.getElementById('next-btn');
+const questionElement = document.getElementById("question");
+const answerButtons = document.getElementById("answer-buttons");
+const nextButton = document.getElementById("next-btn");
 
-let currentQuestion = 0;
+let currentQuestionIndex = 0;
 let score = 0;
 
-// Function to load the next question
-function loadQuestion(questionIndex) {
-    const questionContainer = document.getElementById('question-container');
-    const optionsList = document.getElementById('options');
-    questionContainer.textContent = `Question ${questionIndex + 1}: ${questions[questionIndex].question}`;
-    optionsList.innerHTML = '';
+function startQuiz(){
+    currentQuestionIndex = 0;
+    score = 0;
+    nextButton.innerHTML = "Next";
+    showQuestion();
 
-    questions[questionIndex].options.forEach((option, index) => {
-        const li = document.createElement('li');
-        li.textContent = option;
-        li.classList.add('option');
-        li.addEventListener('click', () => selectAnswer(index));
-        optionsList.appendChild(li);
+}
+function showQuestion(){
+    resetState();
+    let currentQuestion = questions[currentQuestionIndex];
+    let questionNo = currentQuestionIndex + 1;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerHTML = answer.text;
+        button.classList.add("btn");
+        answerButton.appendChild(button);
+        if(answer.correct){
+            button.dataset.correct = answer.correct;
+        }
+
+        button.addEventListener("click", selectAnswer);
     });
 
-    // Show the "Submit" button for the current question
-    const submitButton = document.getElementById('submit-btn');
-    submitButton.style.display = 'block';
-    submitButton.addEventListener('click', () => checkAnswerAndProceed(questionIndex));
 }
 
-// Function to select an answer
-function selectAnswer(selectedIndex) {
-    resetOptions();
-    options[selectedIndex].classList.add('selected');
-}
-
-// Function to check the answer and proceed
-function checkAnswerAndProceed(questionIndex) {
-    const selectedOption = document.querySelector('.option.selected');
-    if (selectedOption) {
-        const selectedIndex = Array.from(options).indexOf(selectedOption);
-        checkAnswer(selectedIndex);
-        disableOptions();
-        nextButton.style.display = 'block';
+function resetState(){
+    nextButton.style.display = none;
+    while(answerButtons.firstChild){
+        answerButtons.removeChild(answerButtons.firstChild);
     }
 }
 
-// Event listener for the "Next" button
-nextButton.addEventListener('click', function () {
-    if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        loadQuestion(currentQuestion);
-        resetOptions();
-    } else {
-        displayScore();
+function selectAnswer(){
+    const selectedBtn = e.target;
+    const isCorrect = selectedBtn.dataset.correct === "true";
+    if (isCorrect){
+        selectedBtn.classList.add("correct");
+        score++;
+
+    }else{
+        selectedBtn.classList.add("incorrect");
+}
+    Array.from(answerButtons.children).forEach(button => {
+        if(button.dataset.correct === "true"){
+        button.classList.add("correct");
     }
-    nextButton.style.display = 'none';
+    button.disabled = true;
 });
-
-// Function to reset option colors and selected class
-function resetOptions() {
-    options.forEach(option => {
-        option.style.backgroundColor = '#f2f2f2';
-        option.classList.remove('selected'); // Remove the 'selected' class
-        option.style.pointerEvents = 'auto';
-    });
+nextButton.style.display = "block";
+}
+function showScore(){
+    resetState();
+    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    nextButton.innerHTML = "Play Again";
+    nextButton.style.display = "block";
 }
 
-// ...
+
+function handleNextButton(){
+    currentQuestionIndex++;
+    if(currentQuestionIndex < questions.length){
+        showQuestion();
+    }else{
+        showScore();
+    }
+}
+
+nextButton.addEventListener("click", ()=>{
+    if(currentQuestionIndex < questions.length){
+        handleNextButton();
+    } else {
+        startQuiz;
+    }
+});
+startQuiz();
+
+  
