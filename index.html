@@ -1,29 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-     <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jada Quiz App</title>
 </head>
 <body>
-    <div id="quiz-container">
-        <h1>8th Grade Science Test</h1>
-        <div id="question-container">
-            <p id="question">Question 1: What is the chemical symbol for water?</p>
-            <ul id="options">
-                <li class="option" data-answer="false">H2O2</li>
-                <li class="option" data-answer="false">CO2</li>
-                <li class="option" data-answer="true">H2O</li>
-                <li class="option" data-answer="false">NaCl</li>
-            </ul>
-        </div>
-        <div id="score-container">
-            <p>Your Score: <span id="score">0</span> / 30</p>
-        </div>
-        <!-- Add a "Submit" button for each question -->
-        <button id="submit-btn">Submit</button>
-        <button id="nextButton">Next</button>
+   <div class="app">
+    <h1>Simple Quiz</h1>
+    <div class="quiz">
+      <h2 id="question">Question goes here </h2>
+      <div id="anwser-buttons">
+        <button class="btn">Answer 1</button>
+        <button class="btn">Answer 2</button>
+        <button class="btn">Answer 3</button>
+        <button class="btn">Answer 4</button>
+      </div>
+      <button id="next-btn" >Next</button>
     </div>
-   
+   </div>
+   <script src="script.js"></script>
 </body>
 </html>
