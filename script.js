@@ -1,4 +1,56 @@
-// ... (previous code)
+
+const questions = [
+    
+  
+{
+        question: "Which subatomic particle has a positive charge?",
+        answers:[
+        {text: "Proton", correct:true},
+        {text: "Electron", correct:false},
+        {text: "Neutron", correct:false},
+        {text: "Quark", correct:false},
+        ]
+
+    },
+    {
+        question: "What is found in the nucleus of an atom?",
+        answers:[
+        {text: "Electrons", correct:false},
+        {text: "Neutron", correct:false},
+        {text: "Protons", correct:false},
+        {text: "Both B and C", correct:true},
+        ]
+
+    },
+    {
+        question: "Which element has the atomic number 6?",
+        answers:[
+        {text: "Oxygen", correct:false},
+        {text: "Hydrogen", correct:false},
+        {text: "Carbon", correct:true},
+        {text: "Helium", correct:false},
+        ]
+
+    },
+    {
+        question: "What is the charge of an electron?",
+        answers:[
+        {text: "Postive", correct:false},
+        {text: "Negative", correct:true},
+        {text: "neutral", correct:false},
+        {text: "Variable", correct:false},
+        ]
+
+    },
+   
+];
+
+const questionElement = document.getElementById("question");
+const answerButtons = document.getElementById("answer-buttons");
+const nextButton = document.getElementById("next-btn");
+
+let currentQuestionIndex = 0;
+let score = 0;
 
 function startQuiz() {
     currentQuestionIndex = 0;
