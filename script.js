@@ -47,7 +47,7 @@ function selectAnswer(e) {
             button.classList.add("correct");
         }
         button.disabled = true;
-    }
+    });
     nextButton.style.display = "block";
 }
 
