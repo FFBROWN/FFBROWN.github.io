@@ -60,7 +60,7 @@ function startQuiz() {
 }
 
 function showQuestion() {
-    resetState();
+    // resetState();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
@@ -70,7 +70,11 @@ function showQuestion() {
         button.innerHTML = answer.text;
         button.classList.add("btn");
         answerButtons.appendChild(button);
-        if (answer.correct) {
+    }); 
+} 
+startQuiz();
+//erase above brackets
+        /* if (answer.correct) {
             button.dataset.correct = answer.correct;
         }
 
@@ -127,4 +131,4 @@ nextButton.addEventListener("click", () => {
     }
 });
 
-startQuiz();
+startQuiz(); */
