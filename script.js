@@ -100,7 +100,7 @@ function selectAnswer(e) {
         }
         button.disabled = true;
     });
-    nextButton.style.display = "block";
+    nextButton.style.display = "block"; // show the next button after answer is chosen.
 }
 
 function showScore() {
