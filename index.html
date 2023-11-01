@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Periodic Table Quiz</title>
+    <title>JADA Science Quiz</title>
     <style>
         .quiz-container {
             max-width: 500px;
@@ -26,7 +26,7 @@
 </head>
 <body>
     <div class="quiz-container">
-        <h1>8th Grade Periodic Table Quiz</h1>
+        <h1>JADA Science Quiz</h1>
 
         <form id="quiz-form">
             <div class="question">
@@ -56,6 +56,19 @@
             </div>
 
             <!-- Add more questions here -->
+            
+            <div class="question">
+                1. What can all substances be classified as?
+            </div>
+            <div class="answer">
+                <input type="radio" name="q3" value="O"> O
+            </div>
+            <div class="answer">
+                <input type="radio" name="q3" value="O2"> O2
+            </div>
+            <div class="answer">
+                <input type="radio" name="q3" value="O3"> O3
+            </div>
 
             <button type="button" onclick="checkAnswers()">Submit</button>
         </form>
@@ -68,6 +81,9 @@
             const answers = {
                 q1: "O",
                 q2: "118",
+                 q3: "0"
+
+
                 // Add more answers for additional questions
             };
 
