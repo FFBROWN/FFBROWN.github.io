@@ -1,92 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript">
-        // Add the provided JavaScript functions here
-    </script>
-</head>
-<body>
-    <h1>Simple Quiz</h1>
-    <form name="quizForm">
-        <!-- Question 1 -->
-        <p>1. What is the capital of France?</p>
-        <input type="radio" name="quiz-option-1" value="a" id="q1a"> Paris
-        <input type="radio" name="quiz-option-1" value="b" id="q1b"> London
-        <input type="radio" name="quiz-option-1" value="c" id="q1c"> Berlin
-
-        <!-- Question 2 -->
-        <p>2. Which planet is known as the Red Planet?</p>
-        <input type="radio" name="quiz-option-2" value="a" id="q2a"> Earth
-        <input type="radio" name="quiz-option-2" value="b" id="q2b"> Mars
-        <input type="radio" name="quiz-option-2" value="c" id="q2c"> Venus
-
-        <!-- Add more questions in a similar format -->
-
-        <button onclick="check_quiz_question_old()">Submit</button>
-    </form>
-    <p class="response"></p>
-
-    <script type="text/javascript">
-        // JavaScript to populate questions and answers
-        var questions = [
-            { question: "What is the capital of France?", correctAnswer: "a" },
-            { question: "Which planet is known as the Red Planet?", correctAnswer: "b" },
-            // Add more questions and correct answers
-        ];
-
-        function populateQuestions() {
-            var form = document.forms["quizForm"];
-            var questionNumber = 1;
-            questions.forEach(function (q) {
-                var questionElement = document.createElement("p");
-                questionElement.textContent = questionNumber + ". " + q.question;
-
-                var optionA = document.createElement("input");
-                optionA.type = "radio";
-                optionA.name = "quiz-option-" + questionNumber;
-                optionA.value = "a";
-                optionA.id = "q" + questionNumber + "a";
-                optionA.required = true;
-
-                var labelA = document.createElement("label");
-                labelA.textContent = "A. " + "Paris";
-                labelA.htmlFor = "q" + questionNumber + "a";
-
-                var optionB = document.createElement("input");
-                optionB.type = "radio";
-                optionB.name = "quiz-option-" + questionNumber;
-                optionB.value = "b";
-                optionB.id = "q" + questionNumber + "b";
-                optionB.required = true;
-
-                var labelB = document.createElement("label");
-                labelB.textContent = "B. " + "London";
-                labelB.htmlFor = "q" + questionNumber + "b";
-
-                var optionC = document.createElement("input");
-                optionC.type = "radio";
-                optionC.name = "quiz-option-" + questionNumber;
-                optionC.value = "c";
-                optionC.id = "q" + questionNumber + "c";
-                optionC.required = true;
-
-                var labelC = document.createElement("label");
-                labelC.textContent = "C. " + "Berlin";
-                labelC.htmlFor = "q" + questionNumber + "c";
-
-                form.appendChild(questionElement);
-                form.appendChild(optionA);
-                form.appendChild(labelA);
-                form.appendChild(optionB);
-                form.appendChild(labelB);
-                form.appendChild(optionC);
-                form.appendChild(labelC);
-
-                questionNumber++;
-            });
+    <title>Periodic Table Quiz</title>
+    <style>
+        .quiz-container {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        populateQuestions();
+        .question {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .answer {
+            margin: 5px;
+        }
+
+        .result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>8th Grade Periodic Table Quiz</h1>
+
+        <form id="quiz-form">
+            <div class="question">
+                1. What is the chemical symbol for Oxygen?
+            </div>
+            <div class="answer">
+                <input type="radio" name="q1" value="O"> O
+            </div>
+            <div class="answer">
+                <input type="radio" name="q1" value="O2"> O2
+            </div>
+            <div class="answer">
+                <input type="radio" name="q1" value="O3"> O3
+            </div>
+
+            <div class="question">
+                2. How many elements are there in the periodic table?
+            </div>
+            <div class="answer">
+                <input type="radio" name="q2" value="118"> 118
+            </div>
+            <div class="answer">
+                <input type="radio" name="q2" value="92"> 92
+            </div>
+            <div class="answer">
+                <input type="radio" name="q2" value="32"> 32
+            </div>
+
+            <!-- Add more questions here -->
+
+            <button type="button" onclick="checkAnswers()">Submit</button>
+        </form>
+
+        <div class="result" id="quiz-result"></div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            const answers = {
+                q1: "O",
+                q2: "118",
+                // Add more answers for additional questions
+            };
+
+            let score = 0;
+            for (const question in answers) {
+                const selectedAnswer = document.querySelector(`input[name=${question}]:checked`);
+                if (selectedAnswer) {
+                    if (selectedAnswer.value === answers[question]) {
+                        score++;
+                    }
+                }
+            }
+
+            const quizResult = document.getElementById("quiz-result");
+            quizResult.textContent = `You scored ${score} out of ${Object.keys(answers).length}.`;
+
+            // You can provide additional feedback or explanations for the answers here.
+        }
     </script>
 </body>
 </html>
