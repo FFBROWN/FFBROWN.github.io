@@ -1,25 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <link rel="stylesheet" href="style.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jada Quiz App</title>
+    <script type="text/javascript">
+        // Add the provided JavaScript functions here
+    </script>
 </head>
 <body>
-   <div class="app">
     <h1>Simple Quiz</h1>
-    <div class="quiz">
-      <h2 id="question">Question goes here </h2>
-      <div id="anwser-buttons">
-        <button class="btn">Answer 1</button>
-        <button class="btn">Answer 2</button>
-        <button class="btn">Answer 3</button>
-        <button class="btn">Answer 4</button>
-      </div>
-      <button id="next-btn" >Next</button>
-    </div>
-   </div>
-   <script src="script.js"></script>
+    <form name="quizForm">
+        <!-- Question 1 -->
+        <p>1. What is the capital of France?</p>
+        <input type="radio" name="quiz-option-1" value="a" id="q1a"> Paris
+        <input type="radio" name="quiz-option-1" value="b" id="q1b"> London
+        <input type="radio" name="quiz-option-1" value="c" id="q1c"> Berlin
+
+        <!-- Question 2 -->
+        <p>2. Which planet is known as the Red Planet?</p>
+        <input type="radio" name="quiz-option-2" value="a" id="q2a"> Earth
+        <input type="radio" name="quiz-option-2" value="b" id="q2b"> Mars
+        <input type="radio" name="quiz-option-2" value="c" id="q2c"> Venus
+
+        <!-- Add more questions in a similar format -->
+
+        <button onclick="check_quiz_question_old()">Submit</button>
+    </form>
+    <p class="response"></p>
+
+    <script type="text/javascript">
+        // JavaScript to populate questions and answers
+        var questions = [
+            { question: "What is the capital of France?", correctAnswer: "a" },
+            { question: "Which planet is known as the Red Planet?", correctAnswer: "b" },
+            // Add more questions and correct answers
+        ];
+
+        function populateQuestions() {
+            var form = document.forms["quizForm"];
+            var questionNumber = 1;
+            questions.forEach(function (q) {
+                var questionElement = document.createElement("p");
+                questionElement.textContent = questionNumber + ". " + q.question;
+
+                var optionA = document.createElement("input");
+                optionA.type = "radio";
+                optionA.name = "quiz-option-" + questionNumber;
+                optionA.value = "a";
+                optionA.id = "q" + questionNumber + "a";
+                optionA.required = true;
+
+                var labelA = document.createElement("label");
+                labelA.textContent = "A. " + "Paris";
+                labelA.htmlFor = "q" + questionNumber + "a";
+
+                var optionB = document.createElement("input");
+                optionB.type = "radio";
+                optionB.name = "quiz-option-" + questionNumber;
+                optionB.value = "b";
+                optionB.id = "q" + questionNumber + "b";
+                optionB.required = true;
+
+                var labelB = document.createElement("label");
+                labelB.textContent = "B. " + "London";
+                labelB.htmlFor = "q" + questionNumber + "b";
+
+                var optionC = document.createElement("input");
+                optionC.type = "radio";
+                optionC.name = "quiz-option-" + questionNumber;
+                optionC.value = "c";
+                optionC.id = "q" + questionNumber + "c";
+                optionC.required = true;
+
+                var labelC = document.createElement("label");
+                labelC.textContent = "C. " + "Berlin";
+                labelC.htmlFor = "q" + questionNumber + "c";
+
+                form.appendChild(questionElement);
+                form.appendChild(optionA);
+                form.appendChild(labelA);
+                form.appendChild(optionB);
+                form.appendChild(labelB);
+                form.appendChild(optionC);
+                form.appendChild(labelC);
+
+                questionNumber++;
+            });
+        }
+
+        populateQuestions();
+    </script>
 </body>
 </html>
