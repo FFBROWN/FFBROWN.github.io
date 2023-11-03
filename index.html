@@ -3,14 +3,7 @@
 <head>
     <title>JADA Science Quiz</title>
     <style>
-        *{
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
-}
-body{
-    background: #001e4d;
+  
         
     .quiz-container {
             max-width: 500px;
@@ -21,6 +14,7 @@ body{
         .question {
             font-size: 18px;
             margin-bottom: 10px;
+            background-color:grey;
         }
 
         .answer {
@@ -79,6 +73,19 @@ body{
                 <input type="radio" name="q3" value="The Atomic numbers increase"> The Atomic numbers increase
             </div>
 
+             <div class="question">
+                4. As you move down a group on the periodic table, what happens to the number of energy levels of the atoms?
+            </div>
+            <div class="answer">
+                <input type="radio" name="q4" value=" "> They don't change
+            </div>
+            <div class="answer">
+                <input type="radio" name="q4" value="The Atomic numbers decrease"> They increase then decrease again
+            </div>
+            <div class="answer">
+                <input type="radio" name="q4" value="The Atomic numbers increase"> They increase by one
+            </div>
+
             <button type="button" onclick="checkAnswers()">Submit</button>
         </form>
 
@@ -90,7 +97,8 @@ body{
             const answers = {
                 q1: "O",
                 q2: "118",
-                 q3: "The Atomic numbers increase"
+                 q3: "The Atomic numbers increase",
+                q4: "They increase by one"
 
 
                 // Add more answers for additional questions
