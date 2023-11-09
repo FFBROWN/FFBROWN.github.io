@@ -1,254 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>JADA Science Quiz</title>
-    <style>
-body{
-background-color: aliceblue;
-
-  }
+<!doctype html>
+<html lang="en" >
+    <head>
+       <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="stylesheet" href="./live-search.css" /> 
+        <title>Live Search</title>
         
-    .quiz-container {
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: center;
-            background-color: white;
-            border-radius: 10px;
-            background: #fff;
-            font-weight: 500;
-            padding: 10px;
-  
-   text-align: left;
-
-   cursor: pointer;
-   transition: all 0.3s;
-   
-   
-        }
-
-        .question {
-            font-size: 18px;
-            margin-bottom: 10px;
-            padding: 20px 0;
-            
-          
-            
-        }
-
-        .answer {
-            margin: 5px;
-            background-color: aliceblue;
-            border-radius: 5px;
-            padding: 8px 15px;
-          margin-bottom: 15px;
-          display: flex;
-          align-items: center;
-          cursor: pointer;
-          
-         
-        }
-
-        .result {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        button{
-            background: #001e4d;
-    color: #fff;
-    font-weight: 500;
-    width: 150px;
-    border: 0;
-    padding: 10px;
-    margin: 20px auto 0 ;
-    border-radius: 4px;
-    cursor: pointer;
-    }
-    input{
-      cursor: pointer;
-    }
-    </style>
-</head>
-<body>
-    <div class="quiz-container">
-        <h1>JADA Science Quiz</h1>
-
-        <form id="quiz-form">
-            <div class="question">
-                1. What is the chemical symbol for Oxygen?
-            </div>
-            <div class="answer">
-                <input type="radio" name="q1" value="O"> O
-            </div>
-            <div class="answer">
-                <input type="radio" name="q1" value="O2"> O2
-            </div>
-            <div class="answer">
-                <input type="radio" name="q1" value="O3"> O3
-            </div>
-
-            <div class="question">
-                2. How many elements are there in the periodic table?
-            </div>
-            <div class="answer">
-                <input type="radio" name="q2" value="118"> 118
-            </div>
-            <div class="answer">
-                <input type="radio" name="q2" value="92"> 92
-            </div>
-            <div class="answer">
-                <input type="radio" name="q2" value="32"> 32
-            </div>
-
-            <!-- Add more questions here -->
-            
-            <div class="question">
-                3. What happens to the atomic number as you go from left to right across the periodic table?
-            </div>
-            <div class="answer">
-                <input type="radio" name="q3" value="The Atomic numbers don't change "> The Atomic numbers don't change
-            </div>
-            <div class="answer">
-                <input type="radio" name="q3" value="The Atomic numbers decrease"> Atomic numbers decrease
-            </div>
-            <div class="answer">
-                <input type="radio" name="q3" value="The Atomic numbers increase"> The Atomic numbers increase
-            </div>
-
-             <div class="question">
-                4. As you move down a group on the periodic table, what happens to the number of energy levels of the atoms?
-            </div>
-            <div class="answer">
-                <input type="radio" name="q4" value="They don't change "> They don't change
-            </div>
-            <div class="answer">
-                <input type="radio" name="q4" value="They increase then decrease again"> They increase then decrease again
-            </div>
-            <div class="answer">
-                <input type="radio" name="q4" value="The Atomic numbers increase"> The Atomic numbers increase">
-            </div>
-
-            <div class="question">
-              5. Which family of elements shares characteristics with both metals and nonmetels?
-          </div>
-          <div class="answer">
-              <input type="radio" name="q5" value="Transistion metals "> Transistion metals
-          </div>
-          <div class="answer">
-              <input type="radio" name="q5" value="Semiconductors or metalloids"> Semiconductors or metalloids
-          </div>
-          <div class="answer">
-              <input type="radio" name="q5" value="Halogens"> Halogens
-          </div>
-          <div class="question">
-            6.  _______ have a different amount of neutrons than the expected number and will affect the _____ of the atoms.Atoms that have more electrons than expected are called _______.
-        </div>
-        <div class="answer">
-            <input type="radio" name="q6" value="Elements, Mass, Neutrons">  Elements, Mass, Neutrons
-        </div>
-        <div class="answer">
-            <input type="radio" name="q6" value="Electrons,Mass, Cations"> Electrons,Mass, Cations
-        </div>
-        <div class="answer">
-            <input type="radio" name="q6" value="Isotopes, Mass, Anions"> Isotopes, Mass, Anions
-        </div>
-
-        <div class="question">
-          7. Atoms that have less _____ than expexted are called _____.
-      </div>
-      <div class="answer">
-          <input type="radio" name="q7" value="Electrons, Cations"> Electrons, Cations
-      </div>
-      <div class="answer">
-          <input type="radio" name="q7" value=" Neutrons, Ions"> Neutrons, Ions
-      </div>
-      <div class="answer">
-          <input type="radio" name="q7" value="Elements,compounds"> Elements, Compounds
-      </div>
-
-      <div class="question">
-        8. The building blocks of all matter is called an _____.______ are made of one or more different atoms. _________are made of one or more of the same atoms.
-    </div>
-    <div class="answer">
-        <input type="radio" name="q8" value="Compounds, Elements, Atoms"> Compounds, Elements, Atoms
-    </div>
-    <div class="answer">
-        <input type="radio" name="q8" value="Atoms,Compound,Elements"> Atoms,Compound,Elements
-    </div>
-    <div class="answer">
-        <input type="radio" name="q8" value="Elements, Electrons, Compounds"> Elements, Electrons, Compounds
-    </div>
-
-    <div class="question">
-      9. ______the scientist who is credited with discovering that atoms have protons in the nucleus. ________the scientist who is credited with the discovery that atoms of the same element are alike
-  </div>
-  <div class="answer">
-      <input type="radio" name="q9" value="Rutherford, Dalton"> Rutherford, Dalton
-  </div>
-  <div class="answer">
-      <input type="radio" name="q9" value="Thomas, Bohr"> Thomas, Bohr
-  </div>
-  <div class="answer">
-      <input type="radio" name="q9" value="Dalton, Rutherford"> Dalton, Rutherford
-  </div>
-<!--<div class="question">
-    10. 
+    </head>
+    <body>
+        <header>
+ <ion-icon name="videocam"></ion-icon>
+ <h1>Search Movies</h1>
+</header>
+<main>
+    <div id="search-container">
+ <ion-icon name="search-outline"></ion-icon>
+ <input type="search" id="search-bar" placeholder="Search movies..." />
 </div>
-<div class="answer">
-    <input type="radio" name="q8" value=""> 
-</div>
-<div class="answer">
-    <input type="radio" name="q8" value=""> 
-</div>
-<div class="answer">
-    <input type="radio" name="q8" value=""> 
-</div> -->
- 
+    <div id="results-container"></div>
+    <p id="movie-unavailable-txt"></p>
+</main>
 
 
 
-      
 
-
-
-            <button type="button" onclick="checkAnswers()">Submit</button>
-        </form>
-
-        <div class="result" id="quiz-result"></div>
-    </div>
-
-    <script>
-        function checkAnswers() {
-            const answers = {
-                q1: "O",
-                q2: "118",
-                 q3: "The Atomic numbers increase",
-                q4: "They increase by one",
-                q5: "Semiconductors or metalloids",
-                q6: "Isotopes, Mass, Anions",
-                q7: "Electrons, Cations",
-                q8: "Atoms,Compound,Elements",
-                q9: "Rutherford, Dalton"
-              
-
-
-                // Add more answers for additional questions
-            };
-
-            let score = 0;
-            for (const question in answers) {
-                const selectedAnswer = document.querySelector(`input[name=${question}]:checked`);
-                if (selectedAnswer) {
-                    if (selectedAnswer.value === answers[question]) {
-                        score++;
-                    }
-                }
-            }
-
-            const quizResult = document.getElementById("quiz-result");
-            quizResult.textContent = `You scored ${score} out of ${Object.keys(answers).length}.`;
-
-            // You can provide additional feedback or explanations for the answers here.
-        }
-    </script>
-</body>
+        <script
+ type="module"
+ src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+></script>
+<script
+ nomodule
+ src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+></script>
+    </body>
 </html>
