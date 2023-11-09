@@ -1,134 +1,88 @@
+const url = "https://imdb-top-100-movies.p.rapidapi.com/";
+const options = {
+ method: "GET",
+ headers: {
+   "X-RapidAPI-Key": "Your Generated API Key",
+   "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com",
+ },
+};
 
-const questions = [
-    
-  
-{
-        question: "Which subatomic particle has a positive charge?",
-        answers:[
-        {text: "Proton", correct:true},
-        {text: "Electron", correct:false},
-        {text: "Neutron", correct:false},
-        {text: "Quark", correct:false},
-        ]
+const searchBar = document.getElementById("search-bar");
+const resultsContainer = document.getElementById("results-container");
+const movieUnavailableTxt = document.getElementById("movie-unavailable-txt");
+let movieList;
+let searchValue;
+let moviesReturnedOnSearch;
 
-    },
-    {
-        question: "What is found in the nucleus of an atom?",
-        answers:[
-        {text: "Electrons", correct:false},
-        {text: "Neutron", correct:false},
-        {text: "Protons", correct:false},
-        {text: "Both B and C", correct:true},
-        ]
+// Function to fetch movies from the API
+const fetchMovies = async () => {
+ try {
+   const response = await fetch(url, options);
+   movieList = await response.json();
 
-    },
-    {
-        question: "Which element has the atomic number 6?",
-        answers:[
-        {text: "Oxygen", correct:false},
-        {text: "Hydrogen", correct:false},
-        {text: "Carbon", correct:true},
-        {text: "Helium", correct:false},
-        ]
+   // Storing the Movie Data in browser storage
+   localStorage.setItem("moviedata", JSON.stringify(movieList));
+   localStorage.setItem("cacheTimestamp", Date.now()); // Update cache timestamp
 
-    },
-    {
-        question: "What is the charge of an electron?",
-        answers:[
-        {text: "Postive", correct:false},
-        {text: "Negative", correct:true},
-        {text: "neutral", correct:false},
-        {text: "Variable", correct:false},
-        ]
+   // Render the movies on the page
+   renderMovies(movieList);
+ } catch (error) {
+   movieUnavailableTxt.innerHTML =
+     "An error occurred while fetching movies. <br /> Please try again later.";
+   movieUnavailableTxt.style.display = "block";
+   console.error(error);
+ }
+};
 
-    },
-   
-];
+// Function to render movies on the page
+const renderMovies = (movies) => {
+ resultsContainer.innerHTML = ""; // Clear the existing movies
+ movieUnavailableTxt.style.display = "none"; // Hide the "No movies found" message
+ moviesReturnedOnSearch = []; // Clear the movies returned on search array
 
-const questionElement = document.getElementById("question");
-const answerButton = document.getElementById("answer-buttons");
-const nextButton = document.getElementById("next-btn");
+ movies.forEach((movie) => {
+   resultsContainer.innerHTML += `
+     <div class="movie-cards">
+       <img src="${movie.image}" alt="movie image" class="movie-image" />
+       <h2 class="title">${movie.title}</h2>
+       <p class="plot">${movie.description}</p>
+       <p class="date">${movie.year}</p>
+     </div>
+   `;
 
-let currentQuestionIndex = 0;
-let score = 0;
+   moviesReturnedOnSearch.push(movie); // Add the movies that are a result to the search input value
+ });
+};
 
-function startQuiz() {
-    currentQuestionIndex = 0;
-    score = 0;
-    nextButton.innerHTML = "Next";
-    showQuestion();
+const cacheTimestamp = localStorage.getItem("cacheTimestamp");
+const expirationDuration = 21600000; // 6 hours in milliseconds
+
+// Check if cache has expired or data is not available
+if (
+ !cacheTimestamp ||
+ Date.now() - parseInt(cacheTimestamp) > expirationDuration
+) {
+ // Cache expired or data not available, fetch movies again
+ fetchMovies();
+} else {
+ // Use cached movie data
+ movieList = JSON.parse(localStorage.getItem("moviedata"));
+ renderMovies(movieList);
 }
 
-function showQuestion() {
-    // resetState();
-    let currentQuestion = questions[currentQuestionIndex];
-    let questionNo = currentQuestionIndex + 1;
-    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+// Event listener and handler for search bar input
+searchBar.addEventListener("input", (event) => {
+ searchValue = event.target.value.trim().toLowerCase();
 
-    currentQuestion.answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.innerHTML = answer.text;
-        button.classList.add("btn");
-        answerButton.appendChild(button);
-    }); 
-} 
-startQuiz();
-//erase above brackets
-        /* if (answer.correct) {
-            button.dataset.correct = answer.correct;
-        }
+ // Filter movies based on search input
+ const filteredMovies = movieList.filter((movie) =>
+   movie.title.toLowerCase().includes(searchValue),
+ );
 
-        button.addEventListener("click", selectAnswer);
-    });
-}
+ // Render the filtered movies on the page
+ renderMovies(filteredMovies);
 
-function resetState() {
-    nextButton.style.display = 'none';
-    while (answerButtons.firstElementChild) {
-        answerButtons.removeChild(answerButtons.firstChild);
-    }
-}
-
-function selectAnswer(e) {
-    const selectedBtn = e.target;
-    const isCorrect = selectedBtn.dataset.correct === "true";
-    if (isCorrect) {
-        selectedBtn.classList.add("correct");
-        score++;
-    } else {
-        selectedBtn.classList.add("incorrect");
-    }
-    Array.from(answerButtons.children).forEach(button => {
-        if (button.dataset.correct === "true") {
-            button.classList.add("correct");
-        }
-        button.disabled = true;
-    });
-    nextButton.style.display = "block"; // show the next button after answer is chosen.
-}
-
-function showScore() {
-    resetState();
-    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
-    nextButton.innerHTML = "Play Again";
-    nextButton.style.display = "block";
-}
-
-function handleNextButton() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        showQuestion();
-    } else {
-        showScore();
-    }
-}
-
-nextButton.addEventListener("click", () => {
-    if (currentQuestionIndex < questions.length) {
-        handleNextButton();
-    } else {
-        startQuiz();
-    }
+ if (moviesReturnedOnSearch.length <= 0) {
+   movieUnavailableTxt.style.display = "block"; // Show the "No movies found" message if no movies match the search
+ }
 });
-
-startQuiz(); */
